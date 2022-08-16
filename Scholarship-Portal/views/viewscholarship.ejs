@@ -1,0 +1,150 @@
+<% include partials/header.ejs %>
+<% include partials/middle.ejs %>
+
+        <div class="card mx-auto col-lg-10 mt-4" style="align-items: center; padding: 20px"><br>
+          <h2 id="name">
+            <%= scholarship[0].sname %>
+          </h2>
+          <hr style="border: 1px solid; width: 800px; margin-top: -3px"><br>
+          <div class="card-body" id="1">
+            <h4>About Scholarship</h4>
+            <hr style="border: 0.5px solid; width: 800px; margin-top: -3px; color: gray">
+            <br>
+            <div>
+              <h5>Authority</h5>
+              <p> <%= scholarship[0].authority %> </p>
+              <hr style="border: 0.5px solid; width: 800px; margin-top: -3px; color: gray">
+              <br>
+            </div>
+            <div>
+              <h5>Department Name</h5>
+              <p> <%= scholarship[0].aname %> </p>
+              <hr style="border: 0.5px solid; width: 800px; margin-top: -3px; color: gray">
+              <br>
+            </div>
+            <div>
+              <h5>Eligibility Criteria</h5>
+              <i class="fas fa-arrow-right prefix mr-1"></i>
+              &nbsp
+              <span>Category : <%= scholarship[0].category %> </span>
+              <br>
+              <i class="fas fa-arrow-right prefix mr-1"></i>
+              &nbsp
+              <span>
+                Minimum Qualification : <%= scholarship[0].spass %>
+              </span>
+              <br>
+              <i class="fas fa-arrow-right prefix mr-1"></i>
+              &nbsp
+              <span>Cutoff : <%= scholarship[0].cutoff %> </span>
+              <br>
+              <i class="fas fa-arrow-right prefix mr-1"></i>&nbsp
+              <span>Region : <%= scholarship[0].state %> </span>
+              <br>
+              <i class="fas fa-arrow-right prefix mr-1"></i>&nbsp
+              <span>Applicable Branch : <%= scholarship[0].applbranch %> </span>
+              <br><i class="fas fa-arrow-right prefix mr-1"></i>&nbsp
+              <span>Income Limit : <%= scholarship[0].incomelimit %> </span>
+              <br><br>
+              <hr style="border: 0.5px solid; width: 800px; margin-top: -3px; color: gray"><br>
+            </div>
+            <div>
+              <h5>Benefits</h5>
+              <p> <%= scholarship[0].benefit %></p>
+              <hr style="border: 0.5px solid; width: 800px; margin-top: -3px; color: gray">
+              <br></div>
+              <div>
+                <h5>Renewal Policy</h5>
+                <p> <%- scholarship[0].renewpolicy %> </p>
+
+                <hr style="border: 0.5px solid; width: 800px; margin-top: -3px; color: gray">
+                <br>
+              </div>
+              <div>
+                <h5>Documents Required</h5>
+                <p> <%- scholarship[0].docrequired %> </p>
+                <hr style="border: 0.5px solid; width: 800px; margin-top: -3px; color: gray">
+                <br>
+              </div>
+          </div>
+
+          <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h4 class="modal-title w-100 font-weight-bold">Check Eligibility</h4>
+                  <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <form action="/checkEligibility" method="post">
+                  <div class="modal-body mx-3">
+                    <div class="md-form mb-4">
+                      <input type="text" id="state" class="form-control validate"
+                        data-toggle="tooltip" data-placement="bottom"
+                        title="Default is India" name="state">
+                      <label data-error="wrong" data-success="right"
+                        for="state">State</label>
+                    </div>
+                    <div class="md-form mb-3">
+                      <input type="number" id="income" class="form-control validate" name="income">
+                      <label data-error="wrong" data-success="right"
+                        for="income">Income</label>
+                    </div>
+                    <div class="md-form mb-3">
+                      <select class="browser-default custom-select mb-3" id="qualification" name="qualification">
+                        <option value="" disabled selected>Choose qualification</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                        <option value="Graduate">Graduate</option>
+                      </select>
+                    </div>
+                    <div class="md-form mb-3">
+                      <input type="text" id="Percentage" class="form-control validate" name="percentage">
+                      <label data-error="wrong" data-success="right"
+                        for="Percentage">Percentage</label>
+                    </div>
+                    <div class="md-form mb-3">
+                      <select class="browser-default custom-select mb-3" id="category" name="category">
+                        <option value="" disabled selected>Category</option>
+                        <option value="SC">SC</option>
+                        <option value="ST">ST</option>
+                        <option value="EBC">EBC</option>
+                        <option value="OBC">OBC</option>
+                        <option value="General">General</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-md btn-outline-primary mt-3" type="submit" value="submit"
+                      style="border-radius: 25px; width: 120px"
+                      id="checkeligi">Check</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+          
+          
+
+          <div class="row">
+          <!-- <a href="" class="btn btn-md btn-outline-primary mt-3" style="border-radius: 25px; margin-right: 50px" data-toggle="modal" data-target="#modalRegisterForm">Check eligibility</a> -->
+          <a href="<%= scholarship[0].link %>" id="visitsite" class="btn btn-md btn-outline-primary mt-3 float-right" style="border-radius: 25px; margin-left: 50px">Visit Site</a>
+          </div>
+      </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- MDB cordate JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/js/mdb.min.js"></script>
+  </body>
+</html>
